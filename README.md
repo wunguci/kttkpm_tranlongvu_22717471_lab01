@@ -3,16 +3,9 @@
 Producer nhận email requests qua API và đẩy vào queue.
 Consumer lấy từ queue và xử lý ngay lập tức.
 
-+----------+        +------------+        +-----------+
-| Producer | -----> | RabbitMQ   | -----> | Consumer  |
-+----------+        +------------+        +-----------+
-                         Queue
-
 ## Run
 ```bash
 docker-compose up --build
-
-## stop
 docker compose down -v
 
 # Welcome email
