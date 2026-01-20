@@ -1,0 +1,24 @@
+services:
+  rabbitmq:
+    image: rabbitmq:4.2.2-management-alpine
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+ 
+  producer:
+    build: ./producer
+    container_name: email_api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - rabbitmq
+
+  consumer:
+    build: ./consumer
+    container_name: email_worker
+    depends_on:
+      - rabbitmq
